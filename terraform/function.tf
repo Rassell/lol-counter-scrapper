@@ -1,7 +1,3 @@
-variable "cat" {
-  type = string
-}
-
 terraform {
   required_providers {
     cloudflare = {
