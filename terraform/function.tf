@@ -1,4 +1,4 @@
-variable "CLOUDFLARE_API_TOKEN" {
+variable "cat" {
   type = string
 }
 
@@ -17,6 +17,10 @@ terraform {
       name = "lol-counter-scrapper"
     }
   }
+}
+
+provider "cloudflare" {
+  api_token = var.cat
 }
 
 resource "cloudflare_worker_script" "example_script" {
