@@ -38,15 +38,18 @@ jobs:
       - uses: actions/checkout@v2
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
+        working-directory: ./terraform
       - name: Terraform Init
         id: init
         run: terraform init
+        working-directory: ./terraform
         env:
           cloudflare_api_key: env_test
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
         continue-on-error: false
+        working-directory: ./terraform
 
   deploy:
     runs-on: ubuntu-latest
