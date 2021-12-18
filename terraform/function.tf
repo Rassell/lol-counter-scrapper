@@ -18,9 +18,19 @@ terraform {
 provider "cloudflare" {
 }
 
+resource "cloudflare_workers_kv_namespace" "rassell_github" {
+  title = "rassell-github"
+}
+
 resource "cloudflare_worker_script" "lol_counter_scrapper" {
   name    = "lol-counter-scrapper"
-  content = file("dist/index.js")
+  content = <<EOF
+              EOF
+
+  kv_namespace_binding {
+    name         = "rassell_github"
+    namespace_id = cloudflare_workers_kv_namespace.rassell_github.id
+  }
 }
 
 resource "cloudflare_worker_cron_trigger" "example_trigger" {
