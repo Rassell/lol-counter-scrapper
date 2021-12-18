@@ -1,4 +1,4 @@
-variable "CLOUDFLARE_API_KEY" {
+variable "CLOUDFLARE_API_TOKEN" {
   type = string
 }
 
@@ -20,8 +20,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  email   = "sordesos@gmail.com"
-  api_key = var.CLOUDFLARE_API_KEY
+  api_token = var.CLOUDFLARE_API_TOKEN
 }
 
 resource "cloudflare_worker_script" "example_script" {
