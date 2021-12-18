@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = var.cat
+  api_token = "Ll2HEToEJp8HvxGLrqLZFNK_VAxK_nXC7vIW5wmc"
 }
 
 resource "cloudflare_workers_kv_namespace" "rassell_github" {
