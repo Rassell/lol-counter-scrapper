@@ -19,10 +19,6 @@ terraform {
   }
 }
 
-provider "cloudflare" {
-  api_token = var.CLOUDFLARE_API_TOKEN
-}
-
 resource "cloudflare_worker_script" "example_script" {
   name    = "example-script"
   content = file("path/to/my.js")
