@@ -34,8 +34,9 @@ jobs:
 
   terraform:
     runs-on: ubuntu-latest
-    run:
-      working-directory: ${{ env.tf_actions_working_dir }}/../terraform
+    defaults:
+      run:
+        working-directory: ${{ env.tf_actions_working_dir }}/../terraform
     steps:
       - name: HashiCorp - Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
