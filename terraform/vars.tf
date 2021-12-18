@@ -1,3 +1,4 @@
 variable "cat" {
-  type = string
+  type    = string
+  default = ""
 }
