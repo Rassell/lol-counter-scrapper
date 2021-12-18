@@ -16,8 +16,6 @@ terraform {
 }
 
 provider "cloudflare" {
-  email = "sordesos@gmail.com"
-  api_key = "c979f8b2b007cebdbc74eb90870581be52d46"
 }
 
 resource "cloudflare_workers_kv_namespace" "rassell_github" {
