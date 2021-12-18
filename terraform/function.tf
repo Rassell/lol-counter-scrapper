@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "cloudflare" {
-  api_token = "Ll2HEToEJp8HvxGLrqLZFNK_VAxK_nXC7vIW5wmc"
+  api_token = "bTepv3-ngHjtVTEWC25oHkBzniaQFRelIZoX_oKj"
 }
 
 resource "cloudflare_workers_kv_namespace" "rassell_github" {
