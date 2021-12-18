@@ -46,12 +46,12 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-        env:
-          TF_VAR_CLOUDFLARE_API_KEY: ${{ env.CLOUDFLARE_API_KEY }}
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
         continue-on-error: false
+        env:
+          TF_VAR_CLOUDFLARE_API_KEY: ${{ env.CLOUDFLARE_API_KEY }}
 
   deploy:
     runs-on: ubuntu-latest
