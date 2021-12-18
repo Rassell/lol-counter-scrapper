@@ -16,8 +16,8 @@ terraform {
 }
 
 provider "cloudflare" {
-  email   = var.cloudflare_email
-  api_key = var.cloudflare_api_key
+  email   = "sordesos@gmail.com"
+  api_key = var.CLOUDFLARE_API_KEY
 }
 
 resource "cloudflare_worker_script" "example_script" {

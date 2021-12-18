@@ -44,7 +44,7 @@ jobs:
         run: terraform init
         working-directory: ./terraform
         env:
-          cloudflare_api_key: env_test
+          TF_VAR_CLOUDFLARE_API_KEY: ${{ env.CLOUDFLARE_API_KEY }}
       - name: Terraform Plan
         id: plan
         run: terraform plan -no-color
