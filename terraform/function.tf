@@ -1,3 +1,7 @@
+variable "CLOUDFLARE_API_KEY" {
+  type = string
+}
+
 terraform {
   required_providers {
     cloudflare = {
