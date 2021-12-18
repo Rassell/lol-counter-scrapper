@@ -49,6 +49,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: [build, terraform]
     steps:
       - name: Download a artifact
         uses: actions/download-artifact@v2
