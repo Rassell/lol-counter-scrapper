@@ -71,7 +71,7 @@ Promise.allSettled(characterPromises).then(async dataList => {
       })
       .sort((a, b) => b.winRate - a.winRate);
 
-    const collection = client.db('lol-counters').collection('counters');
+    const collection = client.db('lol-counter').collection('counters');
 
     await collection.updateOne(
       { id: championData.id },
