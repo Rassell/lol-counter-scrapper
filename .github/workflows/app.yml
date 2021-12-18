@@ -51,7 +51,7 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: false
         env:
-          TF_VAR_CLOUDFLARE_API_KEY: ${{ env.CLOUDFLARE_API_KEY }}
+          TF_VAR_CLOUDFLARE_API_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
 
   deploy:
     runs-on: ubuntu-latest
