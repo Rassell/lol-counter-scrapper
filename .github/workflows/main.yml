@@ -51,6 +51,10 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+      - name: show ad user
+        run: |
+          az ad user list
+          az ad signed-in-user show
       - name: Terraform Plan
         id: plan
         run: terraform plan
