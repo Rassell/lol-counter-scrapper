@@ -41,6 +41,10 @@ jobs:
         working-directory: ./terraform
     steps:
       - uses: actions/checkout@v2
+      - name: az terminal login
+        run: |
+          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
+          az account show
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
         with:
@@ -48,11 +52,9 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
-      - name: az terminal login & terraform plan
-        run: |
-          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
-          az account set -s ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          terraform plan
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan
         env:
           ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_SECRET }}
