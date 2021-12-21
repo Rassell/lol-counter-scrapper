@@ -41,7 +41,7 @@ jobs:
         working-directory: ./terraform
     steps:
       - uses: actions/checkout@v2
-      - name: 'az terminal login'
+      - name: az terminal login
         run: |
           az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
       - name: Setup Terraform
@@ -53,7 +53,6 @@ jobs:
         run: terraform init
       - name: show ad user
         run: |
-          az ad user list
           az ad signed-in-user show
       - name: Terraform Plan
         id: plan
