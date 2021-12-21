@@ -39,7 +39,7 @@ jobs:
             dist
 
   terraform:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     defaults:
       run:
         working-directory: ./terraform
@@ -50,7 +50,8 @@ jobs:
         with:
           client-id: ${{ secrets.ARM_CLIENT_ID }}
           tenant-id: ${{ secrets.ARM_TENANT_ID }}
-          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+          subscription-id: ${{ secrets.ARM_SUBSCRIPTION_ID }} 
+          enable-AzPSSession: true
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
         with:
