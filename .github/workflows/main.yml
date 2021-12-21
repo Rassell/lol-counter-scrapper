@@ -44,7 +44,6 @@ jobs:
       - name: az terminal login
         run: |
           az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
-          az account show
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
         with:
@@ -56,10 +55,7 @@ jobs:
         id: plan
         run: terraform plan
         env:
-          ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
           ARM_CLIENT_SECRET: ${{ secrets.ARM_SECRET }}
-          ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
 
   deploy:
     runs-on: ubuntu-latest
