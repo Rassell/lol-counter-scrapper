@@ -42,13 +42,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: 'az terminal login'
-        env:
-          AZURE_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ secrets.ARM_SECRET_ID }}
-          AZURE_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
         run: |
-          echo "$AZURE_CLIENT_ID ${{ secrets.ARM_CLIENT_ID }}"
-          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET_ID }} --tenant ${{ secrets.ARM_TENANT_ID }}
+          az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1.2.1
         with:
