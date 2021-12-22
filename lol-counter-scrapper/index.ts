@@ -56,7 +56,10 @@ async function main() {
   _logger.log('Open browser...');
 
   // Open the browser
-  const browser = await puppeteer.launch({ slowMo: 500, headless: true });
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: 'wss://chrome.browserless.io/',
+    slowMo: 500,
+  });
   const page = await browser.newPage();
 
   _logger.log('Browser opened');
@@ -114,17 +117,17 @@ async function main() {
 }
 
 // Code to execute on local
-// main();
+main();
 
 // Code to execute on azure functions
-module.exports = async function (context: Context, myTimer: any) {
-  if (myTimer.isPastDue) {
-    context.log('Node is running late!');
-  }
-
-  setLogger({ log: context.log });
-  await getClient();
-  await main();
-
-  context.done();
-};
+// module.exports = async function (context: Context, myTimer: any) {
+//   if (myTimer.isPastDue) {
+//     context.log('Node is running late!');
+//   }
+// 
+//   setLogger({ log: context.log });
+//   await getClient();
+//   await main();
+// 
+//   context.done();
+// };
