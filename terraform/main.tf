@@ -55,6 +55,12 @@ resource "azurerm_app_service_plan" "lol_counter_scrapper" {
     tier = "Dynamic"
     size = "Y1"
   }
+
+  lifecycle {
+    ignore_changes = [
+      kind,
+    ]
+  }
 }
 
 resource "azurerm_function_app" "lol_counter_scrapper" {
