@@ -114,7 +114,8 @@ module.exports = async function (context: Context, myTimer: any) {
     context.log('Node is running late!');
   }
 
-  await setLogger(context.log);
+  setLogger({ log: context.log });
+
   await main();
 
   context.done();

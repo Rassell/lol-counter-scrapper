@@ -1,5 +1,9 @@
-export let _logger = console;
+type ILogger = {
+  log: (l: string) => void;
+};
 
-export async function setLogger(logger: any) {
+export let _logger: ILogger = console;
+
+export function setLogger(logger: ILogger) {
   if (logger) _logger = logger;
 }
