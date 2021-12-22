@@ -1,3 +1,5 @@
+variable "DATABASE_PASS" {}
+
 terraform {
   required_providers {
     azurerm = {
@@ -77,5 +79,7 @@ resource "azurerm_function_app" "lol_counter_scrapper" {
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME       = "node",
     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
+    DATABASE_USER                  = lol-counter
+    DATABASE_PASS                  = var.DATABASE_PASS
   }
 }
