@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "a lol counter scraper (sorry! we need some info)",
   "main": "lol-counter-scrapper/index.ts",
+  "engines": {
+    "node": ">=0.14"
+  },
   "scripts": {
     "start": "npm run build && node dist/lol-counter-scrapper/index.js",
     "build": "rollup -c",
