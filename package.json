@@ -2,11 +2,11 @@
   "name": "lol_counter_scrapper",
   "version": "1.0.0",
   "description": "a lol counter scraper (sorry! we need some info)",
-  "main": "Functions/lol-counter-scrapper/index.ts",
+  "main": "lol-counter-scrapper/index.ts",
   "scripts": {
-    "start": "npm run build && node dist/Functions/lol-counter-scrapper/index.js",
+    "start": "npm run build && node dist/lol-counter-scrapper/index.js",
     "build": "tsc --project tsconfig.prod.json",
-    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/Functions/lol-counter-scrapper/index.js\""
+    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/lol-counter-scrapper/index.js\""
   },
   "keywords": [
     "lol",

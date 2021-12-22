@@ -3,5 +3,5 @@
   "name": "lol-counter-scrapper",
   "type": "timerTrigger",
   "direction": "in",
-  "scriptFile": "../../dist/Functions/lol-counter-scrapper/index.js"
+  "scriptFile": "../dist/lol-counter-scrapper/index.js"
 }
