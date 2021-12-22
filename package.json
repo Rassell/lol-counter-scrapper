@@ -8,8 +8,11 @@
     "build": "tsc --project tsconfig.prod.json",
     "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/Functions/lol-counter-scrapper/index.js\""
   },
-  "keywords": [],
-  "author": "sammy the shark",
+  "keywords": [
+    "lol",
+    "counter",
+    "scrapper"
+  ],
   "license": "ISC",
   "dependencies": {
     "@azure/functions": "^3.0.0",
