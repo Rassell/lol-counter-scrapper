@@ -7,5 +7,5 @@
       "schedule": "0 */5 * * * *"
     }
   ],
-  "scriptFile": "../dist/lol-counter-scrapper/index.js"
+  "scriptFile": "./dist/index.js"
 }
