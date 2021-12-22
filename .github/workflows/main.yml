@@ -28,7 +28,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'result.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package* .vscode/* tsconfig* /Functions/*/*.ts README.md /terraform' 
+          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package* .vscode/* tsconfig* /Functions/*/*.ts README.md /terraform/*' 
       - name: Archive artifacts 2
         uses: actions/upload-artifact@v2
         with:
