@@ -12,6 +12,7 @@
   "author": "sammy the shark",
   "license": "ISC",
   "dependencies": {
+    "@azure/functions": "^3.0.0",
     "axios": "^0.24.0",
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
