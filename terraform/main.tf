@@ -81,5 +81,6 @@ resource "azurerm_function_app" "lol_counter_scrapper" {
     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
     DATABASE_USER                  = "lol-counter",
     DATABASE_PASS                  = var.DATABASE_PASS,
+    PLAYWRIGHT_BROWSERS_PATH       = 0,
   }
 }
