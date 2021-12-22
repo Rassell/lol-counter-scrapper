@@ -23,29 +23,18 @@ jobs:
         env:
           DATABASE_USER: lol-counter
           DATABASE_PASS: ${{ secrets.DATABASE_PASS }}
-      - name: Generate artifacts
-        uses: papeloto/action-zip@v1
-        with:
-          files: dist/ Functions/ function.json host.json
-          dest: result.zip
       - name: Generate zip
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          filename: 'result2.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package-lock.json .vscode/* tsconfig* /Functions/*/*.ts' 
-      - name: Archive artifacts
+          filename: 'result.zip'
+          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package* .vscode/* tsconfig* /Functions/*/*.ts README.md terraform' 
+      - name: Archive artifacts 2
         uses: actions/upload-artifact@v2
         with:
           name: lol-counter-scrapper
           path: |
             result.zip
-      - name: Archive artifacts 2
-        uses: actions/upload-artifact@v2
-        with:
-          name: lol-counter-scrapper-2
-          path: |
-            result2.zip
 
   terraform:
     runs-on: ubuntu-latest
@@ -88,7 +77,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: lol-counter-scrapper-2
+          name: lol-counter-scrapper
           path: .
       - name: az terminal login
         run: |
