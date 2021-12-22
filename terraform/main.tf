@@ -39,7 +39,7 @@ resource "azurerm_app_service_plan" "lol_counter_scrapper" {
 
   sku {
     tier = "Standard"
-    size = "S1"
+    size = "F1"
   }
 }
 
