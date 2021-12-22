@@ -82,7 +82,9 @@ jobs:
       - name: az terminal login
         run: |
           az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
-      - name: deploy function
+      - name: set nodejs version
         run: |
           az functionapp config set --linux-fx-version "node|14" -g lol-counter-scrapper-rg -n lol-counter-scrapper
+      - name: deploy function
+        run: |
           az functionapp deployment source config-zip -g lol-counter-scrapper-rg -n lol-counter-scrapper --src result.zip
