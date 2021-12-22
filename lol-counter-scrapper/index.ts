@@ -2,7 +2,7 @@ import * as dotEnv from 'dotenv';
 dotEnv.config();
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
-import { chromium } from "playwright-chromium";
+
 import { Context } from '@azure/functions';
 
 import { getClient, getCollection } from './DatabaseClient';
@@ -57,8 +57,7 @@ async function main() {
   _logger.log('Open browser...');
 
   // Open the browser
-  const browser =  await chromium.launch();
-  // const browser = await puppeteer.launch({ slowMo: 500, headless: true });
+  const browser = await puppeteer.launch({ slowMo: 500, headless: true });
   const page = await browser.newPage();
 
   _logger.log('Browser opened');
