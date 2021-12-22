@@ -28,7 +28,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'result.zip'
-          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package* .vscode/* tsconfig* /*/*.ts /*/*.js.map README.md /terraform/* rollup.config.js' 
+          exclusions: '*.git* /*node_modules/* .editorconfig .eslintrc.js .prettierrc package* .vscode/* tsconfig* /*/*.ts /*/*.js.map README.md /terraform/* rollup.config.js'
       - name: Archive artifacts 2
         uses: actions/upload-artifact@v2
         with:
@@ -84,4 +84,5 @@ jobs:
           az login --service-principal -u ${{ secrets.ARM_CLIENT_ID }} -p ${{ secrets.ARM_SECRET }} --tenant ${{ secrets.ARM_TENANT_ID }}
       - name: deploy function
         run: |
+          az functionapp config set --linux-fx-version "node|14" -g lol-counter-scrapper-rg -n lol-counter-scrapper
           az functionapp deployment source config-zip -g lol-counter-scrapper-rg -n lol-counter-scrapper --src result.zip
