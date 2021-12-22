@@ -97,4 +97,16 @@ async function main() {
   await browser.close();
 }
 
-main();
+// Code to execute on local
+// main();
+
+// Code to execute on azure functions
+module.exports = async function (context: any, myTimer: any) {
+  if (myTimer.isPastDue) {
+    context.log('Node is running late!');
+  }
+
+  await main();
+
+  context.done();
+};
