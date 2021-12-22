@@ -6,18 +6,15 @@ import { Context } from '@azure/functions';
 import { getCollection } from './DatabaseClient';
 import { getChampions, getLatestVersion } from './DragonApiClient';
 import { getChampionData } from './CommunityDragonClient';
+import { setLogger, _logger } from './Logger';
 
-var _logger = console;
-
-async function main(logger: any) {
-  if (logger) _logger = logger;
-
-  logger.log('Starting...');
-  logger.log('Getting latest version...');
+async function main() {
+  _logger.log('Starting...');
+  _logger.log('Getting latest version...');
 
   // Get the latest version from the Dragon API
   const latestVersion = await getLatestVersion();
-  logger.log('latest version: ', latestVersion);
+  _logger.log('latest version: ', latestVersion);
 
   // Get the list of champions from the Dragon API
   const championsFromLoLAPI: any[] = await getChampions(latestVersion);
@@ -29,19 +26,23 @@ async function main(logger: any) {
       const championData = await getChampionData(i.id);
 
       // Update the champion data with the data from the Community Dragon API
-      (await getCollection('champions')).updateOne(
-        { id: i.id },
-        { $set: championData },
-        { upsert: true },
-      );
+      try {
+        (await getCollection('champions')).updateOne(
+          { id: i.id },
+          { $set: championData },
+          { upsert: true },
+        );
+      } catch (err) {
+        _logger.error(`Error updateOne ${err.message}`);
+      }
 
-      logger.log(`Updated ${i.name} with id ${i.key}`);
+      _logger.log(`Updated ${i.name} with id ${i.key}`);
 
       return championData;
     } catch (error) {}
   });
 
-  logger.log(`Total champions ${characterDataPromises.length}`);
+  _logger.log(`Total champions ${characterDataPromises.length}`);
 
   // Wait for all promises to resolve
   const dataList = await Promise.allSettled(characterDataPromises);
@@ -57,7 +58,7 @@ async function main(logger: any) {
 
   // Get the counter data for each champion
   for (const championData of championsData) {
-    logger.log(`Getting counters for ${championData.name}`);
+    _logger.log(`Getting counters for ${championData.name}`);
 
     await page.goto(
       `https://u.gg/lol/champions/${championData.name.toLowerCase()}/counter?rank=overall`,
@@ -96,7 +97,7 @@ async function main(logger: any) {
       { upsert: true },
     );
 
-    logger.log(`${championData.name} counters updated`);
+    _logger.log(`${championData.name} counters updated`);
   }
 
   await page.close();
@@ -112,7 +113,8 @@ module.exports = async function (context: Context, myTimer: any) {
     context.log('Node is running late!');
   }
 
-  await main(context.log);
+  await setLogger(context.log);
+  await main();
 
   context.done();
 };

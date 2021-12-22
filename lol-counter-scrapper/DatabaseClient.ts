@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import { _logger } from './Logger';
 
 const uri = `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASS}@cluster0.gws5w.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const databaseConfig = {
@@ -10,13 +11,13 @@ let client: MongoClient;
 
 export async function getClient() {
   if (client) return client;
-  client = new MongoClient(uri, databaseConfig);
   try {
+    client = new MongoClient(uri, databaseConfig);
     await client.connect();
   } catch (error) {
-    console.log(`Error connecting to database: ${error}`);
+    _logger.log(`Error connecting to database: ${error}`);
   }
-  console.log('Connected to database');
+  _logger.log('Connected to database');
   return client;
 }
 
