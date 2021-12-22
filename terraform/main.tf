@@ -38,7 +38,7 @@ resource "azurerm_app_service_plan" "lol_counter_scrapper" {
   resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
 
   sku {
-    tier = "Standard"
+    tier = "Free"
     size = "F1"
   }
 }
