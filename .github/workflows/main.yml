@@ -29,6 +29,7 @@ jobs:
           name: lol-counter-scrapper
           path: |
             dist
+            function.json
 
   terraform:
     runs-on: ubuntu-latest
