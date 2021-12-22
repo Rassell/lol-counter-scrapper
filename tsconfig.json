@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "rootDir": ".",
     "target": "es6",
-    "module": "esnext",
-    "moduleResolution": "node"
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "incremental": true
   }
 }

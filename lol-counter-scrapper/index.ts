@@ -114,17 +114,17 @@ async function main() {
 }
 
 // Code to execute on local
-// main();
+main();
 
 // Code to execute on azure functions
-module.exports = async function (context: Context, myTimer: any) {
-  if (myTimer.isPastDue) {
-    context.log('Node is running late!');
-  }
+// module.exports = async function (context: Context, myTimer: any) {
+//   if (myTimer.isPastDue) {
+//     context.log('Node is running late!');
+//   }// 
 
-  setLogger({ log: context.log });
-  await getClient();
-  await main();
+//   setLogger({ log: context.log });
+//   await getClient();
+//   await main();// 
 
-  context.done();
-};
+//   context.done();
+// };
