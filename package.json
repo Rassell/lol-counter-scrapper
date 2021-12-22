@@ -20,7 +20,7 @@
     "cheerio": "^1.0.0-rc.10",
     "dotenv": "^10.0.0",
     "mongodb": "^4.2.2",
-    "puppeteer": "^13.0.0"
+    "playwright-chromium": "^1.17.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0-4",
