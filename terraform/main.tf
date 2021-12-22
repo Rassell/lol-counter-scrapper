@@ -64,7 +64,8 @@ resource "azurerm_function_app" "lol_counter_scrapper" {
   storage_account_name       = azurerm_storage_account.lol_counter_scrapper.name
   storage_account_access_key = azurerm_storage_account.lol_counter_scrapper.primary_access_key
 
-  version = "~4"
+  os_type = "linux"
+  version = "~3"
 
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME       = "node",
