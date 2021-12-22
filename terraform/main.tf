@@ -62,9 +62,11 @@ resource "azurerm_function_app" "lol_counter_scrapper" {
   storage_account_name       = azurerm_storage_account.lol_counter_scrapper.name
   storage_account_access_key = azurerm_storage_account.lol_counter_scrapper.primary_access_key
 
+  version = "~3"
+
   app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE"       = "",
-    "FUNCTIONS_WORKER_RUNTIME"       = "node",
-    "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
+    FUNCTIONS_WORKER_RUNTIME       = "node",
+    WEBSITE_NODE_DEFAULT_VERSION   = "~14",
+    APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
   }
 }
