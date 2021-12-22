@@ -2,11 +2,11 @@
   "name": "lol_counter_scrapper",
   "version": "1.0.0",
   "description": "a lol counter scraper (sorry! we need some info)",
-  "main": "src/index.ts",
+  "main": "Functions/lol-counter-scrapper/index.ts",
   "scripts": {
-    "start": "npm run build && node dist/index.js",
+    "start": "npm run build && node dist/Functions/lol-counter-scrapper/index.js",
     "build": "tsc --project tsconfig.prod.json",
-    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/index.js\""
+    "watch": "tsc && concurrently \"tsc -w\" \"nodemon dist/Functions/lol-counter-scrapper/index.js\""
   },
   "keywords": [],
   "author": "sammy the shark",
