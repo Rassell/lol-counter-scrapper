@@ -4,7 +4,7 @@ import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
 import { Context } from '@azure/functions';
 
-import { getCollection } from './DatabaseClient';
+import { getClient, getCollection } from './DatabaseClient';
 import { getChampions, getLatestVersion } from './DragonApiClient';
 import { getChampionData } from './CommunityDragonClient';
 import { setLogger, _logger } from './Logger';
@@ -34,7 +34,7 @@ async function main() {
           { upsert: true },
         );
       } catch (err) {
-        _logger.error(`Error updateOne ${err.message}`);
+        _logger.log(`Error updateOne ${err.message}`);
       }
 
       _logger.log(`Updated ${i.name} with id ${i.key}`);
@@ -115,7 +115,7 @@ module.exports = async function (context: Context, myTimer: any) {
   }
 
   setLogger({ log: context.log });
-
+  await getClient();
   await main();
 
   context.done();

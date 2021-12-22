@@ -1,5 +1,5 @@
 type ILogger = {
-  log: (l: string) => void;
+  log: (...args: any[]) => void;
 };
 
 export let _logger: ILogger = console;
