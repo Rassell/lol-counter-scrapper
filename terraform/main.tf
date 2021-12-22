@@ -70,7 +70,7 @@ resource "azurerm_function_app" "lol_counter_scrapper" {
 
   app_settings = {
     FUNCTIONS_WORKER_RUNTIME       = "node",
-    WEBSITE_NODE_DEFAULT_VERSION   = "~14",
+    WEBSITE_NODE_DEFAULT_VERSION   = "node|14",
     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
   }
 }
