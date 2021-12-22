@@ -23,26 +23,26 @@ locals {
   location = "West Europe"
 }
 
-# resource "azurerm_resource_group" "lol_counter_scrapper" {
-#   name     = "lol-counter-scrapper-rg"
-#   location = local.location
-# }
-# 
-# resource "azurerm_storage_account" "lol_counter_scrapper" {
-#   name                     = "lolcounterscrapper"
-#   resource_group_name      = azurerm_resource_group.lol_counter_scrapper.name
-#   location                 = azurerm_resource_group.lol_counter_scrapper.location
-#   account_tier             = "Standard"
-#   account_replication_type = "LRS"
-# }
-# 
-# resource "azurerm_application_insights" "lol_counter_scrapper" {
-#   name                = "lol-counter-scrapper-application-insights"
-#   location            = local.location
-#   resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
-#   application_type    = "Node.JS"
-# }
-# 
+resource "azurerm_resource_group" "lol_counter_scrapper" {
+  name     = "lol-counter-scrapper-rg"
+  location = local.location
+}
+
+resource "azurerm_storage_account" "lol_counter_scrapper" {
+  name                     = "lolcounterscrapper"
+  resource_group_name      = azurerm_resource_group.lol_counter_scrapper.name
+  location                 = azurerm_resource_group.lol_counter_scrapper.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_application_insights" "lol_counter_scrapper" {
+  name                = "lol-counter-scrapper-application-insights"
+  location            = local.location
+  resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
+  application_type    = "Node.JS"
+}
+
 # resource "azurerm_app_service_plan" "lol_counter_scrapper" {
 #   name                = "lol-counter-scrapper-service-plan"
 #   location            = azurerm_resource_group.lol_counter_scrapper.location
