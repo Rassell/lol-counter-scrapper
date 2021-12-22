@@ -47,10 +47,12 @@ resource "azurerm_app_service_plan" "lol_counter_scrapper" {
   name                = "lol-counter-scrapper-service-plan"
   location            = azurerm_resource_group.lol_counter_scrapper.location
   resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
+  kind                = "Linux"
+  reserved            = true
 
   sku {
-    tier = "Free"
-    size = "F1"
+    tier = "Dynamic"
+    size = "Y1"
   }
 }
 
