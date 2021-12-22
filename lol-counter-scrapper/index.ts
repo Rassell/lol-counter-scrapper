@@ -2,7 +2,7 @@ import * as dotEnv from 'dotenv';
 dotEnv.config();
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
-import { chromium } from "playwright-chromium";
+import { chromium } from 'playwright';
 import { Context } from '@azure/functions';
 
 import { getClient, getCollection } from './DatabaseClient';
