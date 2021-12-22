@@ -35,7 +35,7 @@ resource "azurerm_storage_account" "lol_counter_scrapper" {
 resource "azurerm_application_insights" "lol_counter_scrapper" {
   name                = "lol_counter_scrapper_application_insights"
   location            = var.location
-  resource_group_name = azurerm_resource_group.resource_group.name
+  resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
   application_type    = "Node.JS"
 }
 
