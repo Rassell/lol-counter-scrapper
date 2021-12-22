@@ -53,9 +53,13 @@ async function main() {
     .filter((data: any) => data.value && data.status === 'fulfilled')
     .map((data: any) => data.value);
 
+  _logger.log('Open browser...');
+
   // Open the browser
   const browser = await puppeteer.launch({ slowMo: 500, headless: true });
   const page = await browser.newPage();
+
+  _logger.log('Browser opened');
 
   // Get the counter data for each champion
   for (const championData of championsData) {
@@ -101,8 +105,12 @@ async function main() {
     _logger.log(`${championData.name} counters updated`);
   }
 
+  _logger.log('Browser closing...');
+
   await page.close();
   await browser.close();
+
+  _logger.log('Browser closed');
 }
 
 // Code to execute on local
