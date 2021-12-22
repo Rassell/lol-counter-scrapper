@@ -2,5 +2,6 @@
   "schedule": "0 */5 * * * *",
   "name": "lol-counter-scrapper",
   "type": "timerTrigger",
-  "direction": "in"
+  "direction": "in",
+  "scriptFile": "./index.js"
 }
