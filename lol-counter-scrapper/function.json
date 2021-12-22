@@ -1,7 +1,11 @@
 {
-  "schedule": "0 */5 * * * *",
-  "name": "lol-counter-scrapper",
-  "type": "timerTrigger",
-  "direction": "in",
+  "bindings": [
+    {
+      "name": "myTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */5 * * * *"
+    }
+  ],
   "scriptFile": "../dist/lol-counter-scrapper/index.js"
 }
