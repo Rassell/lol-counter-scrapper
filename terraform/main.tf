@@ -45,42 +45,41 @@ resource "azurerm_application_insights" "lol_counter_scrapper" {
   application_type    = "Node.JS"
 }
 
-resource "azurerm_app_service_plan" "lol_counter_scrapper" {
-  name                = "lol-counter-scrapper-service-plan"
-  location            = azurerm_resource_group.lol_counter_scrapper.location
-  resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
-
-  kind     = "Linux"
-  reserved = true
-
-  sku {
-    tier = "Dynamic"
-    size = "Y1"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      kind,
-    ]
-  }
-}
-
-resource "azurerm_function_app" "lol_counter_scrapper" {
-  name                       = "lol-counter-scrapper"
-  location                   = azurerm_resource_group.lol_counter_scrapper.location
-  resource_group_name        = azurerm_resource_group.lol_counter_scrapper.name
-  app_service_plan_id        = azurerm_app_service_plan.lol_counter_scrapper.id
-  storage_account_name       = azurerm_storage_account.lol_counter_scrapper.name
-  storage_account_access_key = azurerm_storage_account.lol_counter_scrapper.primary_access_key
-
-  os_type = "linux"
-  version = "~3"
-
-  app_settings = {
-    FUNCTIONS_WORKER_RUNTIME       = "node",
-    APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
-    DATABASE_USER                  = "lol-counter",
-    DATABASE_PASS                  = var.DATABASE_PASS,
-    PLAYWRIGHT_BROWSERS_PATH       = 0,
-  }
-}
+// resource "azurerm_app_service_plan" "lol_counter_scrapper" {
+//   name                = "lol-counter-scrapper-service-plan"
+//   location            = azurerm_resource_group.lol_counter_scrapper.location
+//   resource_group_name = azurerm_resource_group.lol_counter_scrapper.name
+// 
+//   kind     = "Linux"
+//   reserved = true
+// 
+//   sku {
+//     tier = "Dynamic"
+//     size = "Y1"
+//   }
+// 
+//   lifecycle {
+//     ignore_changes = [
+//       kind,
+//     ]
+//   }
+// }
+// 
+// resource "azurerm_function_app" "lol_counter_scrapper" {
+//   name                       = "lol-counter-scrapper"
+//   location                   = azurerm_resource_group.lol_counter_scrapper.location
+//   resource_group_name        = azurerm_resource_group.lol_counter_scrapper.name
+//   app_service_plan_id        = azurerm_app_service_plan.lol_counter_scrapper.id
+//   storage_account_name       = azurerm_storage_account.lol_counter_scrapper.name
+//   storage_account_access_key = azurerm_storage_account.lol_counter_scrapper.primary_access_key
+// 
+//   os_type = "linux"
+//   version = "~3"
+// 
+//   app_settings = {
+//     FUNCTIONS_WORKER_RUNTIME       = "node",
+//     APPINSIGHTS_INSTRUMENTATIONKEY = azurerm_application_insights.lol_counter_scrapper.instrumentation_key,
+//     DATABASE_USER                  = "lol-counter",
+//     DATABASE_PASS                  = var.DATABASE_PASS,
+//   }
+// }
