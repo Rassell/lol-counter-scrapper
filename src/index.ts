@@ -1,17 +1,23 @@
 require('dotenv').config();
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
+import { Context } from '@azure/functions';
+
 import { getCollection } from './DatabaseClient';
 import { getChampions, getLatestVersion } from './DragonApiClient';
 import { getChampionData } from './CommunityDragonClient';
 
-async function main() {
-  console.log('Starting...');
-  console.log('Getting latest version...');
+var _logger = console;
+
+async function main(logger: any) {
+  if (logger) _logger = logger;
+
+  logger.log('Starting...');
+  logger.log('Getting latest version...');
 
   // Get the latest version from the Dragon API
   const latestVersion = await getLatestVersion();
-  console.log('latest version: ', latestVersion);
+  logger.log('latest version: ', latestVersion);
 
   // Get the list of champions from the Dragon API
   const championsFromLoLAPI: any[] = await getChampions(latestVersion);
@@ -29,13 +35,13 @@ async function main() {
         { upsert: true },
       );
 
-      console.log(`Updated ${i.name} with id ${i.key}`);
+      logger.log(`Updated ${i.name} with id ${i.key}`);
 
       return championData;
     } catch (error) {}
   });
 
-  console.log(`Total champions ${characterDataPromises.length}`);
+  logger.log(`Total champions ${characterDataPromises.length}`);
 
   // Wait for all promises to resolve
   const dataList = await Promise.allSettled(characterDataPromises);
@@ -51,7 +57,7 @@ async function main() {
 
   // Get the counter data for each champion
   for (const championData of championsData) {
-    console.log(`Getting counters for ${championData.name}`);
+    logger.log(`Getting counters for ${championData.name}`);
 
     await page.goto(
       `https://u.gg/lol/champions/${championData.name.toLowerCase()}/counter?rank=overall`,
@@ -90,7 +96,7 @@ async function main() {
       { upsert: true },
     );
 
-    console.log(`${championData.name} counters updated`);
+    logger.log(`${championData.name} counters updated`);
   }
 
   await page.close();
@@ -101,12 +107,12 @@ async function main() {
 // main();
 
 // Code to execute on azure functions
-module.exports = async function (context: any, myTimer: any) {
+module.exports = async function (context: Context, myTimer: any) {
   if (myTimer.isPastDue) {
     context.log('Node is running late!');
   }
 
-  await main();
+  await main(context.log);
 
   context.done();
 };
