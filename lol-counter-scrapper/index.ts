@@ -1,4 +1,5 @@
-require('dotenv').config();
+import * as dotEnv from 'dotenv';
+dotEnv.config();
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
 import { Context } from '@azure/functions';
