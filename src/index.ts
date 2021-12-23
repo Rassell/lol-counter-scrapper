@@ -2,7 +2,6 @@ import * as dotEnv from 'dotenv';
 dotEnv.config();
 import * as cheerio from 'cheerio';
 import * as puppeteer from 'puppeteer';
-import { Context } from '@azure/functions';
 
 import { getClient, getCollection } from './DatabaseClient';
 import { getChampions, getLatestVersion } from './DragonApiClient';
@@ -115,16 +114,3 @@ async function main() {
 
 // Code to execute on local
 main();
-
-// Code to execute on azure functions
-// module.exports = async function (context: Context, myTimer: any) {
-//   if (myTimer.isPastDue) {
-//     context.log('Node is running late!');
-//   }// 
-
-//   setLogger({ log: context.log });
-//   await getClient();
-//   await main();// 
-
-//   context.done();
-// };
